@@ -142,7 +142,8 @@
       hole.style.opacity = ramp(p, 0.445, 0.47);
       var jr = ease(ramp(p, 0.45, 0.53));
       jar.style.setProperty('--jy', ((1 - jr) * 120).toFixed(1) + '%');
-      jar.style.setProperty('--jb', (1 - ramp(p, 0.76, 0.86) * 0.92).toFixed(3));
+      jar.style.setProperty('--jb', (1 - ramp(p, 0.76, 0.82) * 0.6).toFixed(3));
+      jar.style.opacity = 1 - ramp(p, 0.79, 0.835);
       jar.style.transform = 'translate(calc(-50% + ' + (mx * -8).toFixed(1) + 'px), calc(-50% + ' + ((1 - jr) * 120).toFixed(1) + '% + ' + (my * -8).toFixed(1) + 'px))';
       // copy
       var c = 1 - ramp(p, 0.015, 0.075);
@@ -158,7 +159,7 @@
       var fl = ramp(p, 0.75, 0.93);
       flash.style.opacity = ramp(p, 0.74, 0.77);
       seqFlash.draw(Math.round(fl * (flashN - 1)), force);
-      white.style.opacity = ramp(p, 0.87, 0.94);
+      white.style.opacity = ramp(p, 0.83, 0.895);
       var ui = 1 - ramp(p, 0.02, 0.05);
       cue.style.opacity = ui;
       skip.style.opacity = 1 - ramp(p, 0.9, 0.93); skip.style.visibility = p > 0.93 ? 'hidden' : 'visible';
