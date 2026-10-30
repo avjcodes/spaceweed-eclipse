@@ -8,10 +8,10 @@
   function ramp(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
   function ease(t) { return t * t * (3 - 2 * t); }
 
-  // 21+ gate (asks on every new visit, remembered for this tab only; "No" goes to the under-21 page)
+  // 21+ gate (asks on every load and refresh, a Yes only carries across clicks between pages; "No" goes to the under-21 page)
   var gate = document.getElementById('gate');
   var cleared = false;
-  try { cleared = sessionStorage.getItem('sw-21') === 'yes'; } catch (e) {}
+  try { cleared = sessionStorage.getItem('sw-21') === 'yes' && (function () { var n = performance.getEntriesByType('navigation')[0], t = n ? n.type : ''; return t !== 'reload' && (t === 'back_forward' || document.referrer.indexOf(location.origin) === 0); })(); } catch (e) {}
   if (gate) {
     if (cleared) gate.hidden = true;
     else {
