@@ -83,15 +83,15 @@ html.arriving .transit { visibility: visible; transform: translateX(0); }
 .gate { --gd: min(86vw, 78svh, 680px); position: fixed; z-index: 120; inset: 0; background: #000; display: grid; place-items: center; overflow: hidden; }
 .gate[hidden] { display: none; }
 .gate:focus { outline: 0; }
-.gate-disk::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 50%; box-shadow: 0 0 70px 8px rgba(255, 238, 205, .36), 0 0 260px 60px rgba(255, 226, 180, .14); }
+.gate-disk::before { content: ""; position: absolute; inset: -3.2%; z-index: -1; border-radius: 50%; box-shadow: 0 0 70px 8px rgba(255, 238, 205, .36), 0 0 260px 60px rgba(255, 226, 180, .14); }
 .gate-sun { position: absolute; left: 50%; top: 50%; width: calc(var(--gd) / .293); max-width: none; height: auto; transform: translate(-50%, -50%); }
 .gate-logo { position: absolute; left: var(--gut); top: 20px; width: 92px; height: auto; }
-.gate-disk { position: relative; z-index: 0; width: var(--gd); height: var(--gd); display: grid; place-content: center; justify-items: center; gap: clamp(20px, 3.6vmin, 36px); padding: 0 11%; color: #0b0c0e; text-align: center; }
+.gate-disk { position: relative; z-index: 0; width: calc(var(--gd) * .94); height: calc(var(--gd) * .94); border-radius: 50%; background: #000; display: grid; place-content: center; justify-items: center; gap: clamp(20px, 3.6vmin, 36px); padding: 0 11%; color: #f4efe3; text-align: center; }
 .gate-disk h2 { font-size: clamp(24px, calc(var(--gd) * .072), 48px); font-weight: 400; line-height: 1.08; }
 .choices { display: flex; gap: 12px; }
 .choices .btn { min-width: 104px; }
-.gate-disk .btn-char { background: #0b0c0e; color: #f4efe3; }
-.gate-disk .btn-char-line { color: #0b0c0e; border-color: #0b0c0e; }
+.gate-disk .btn-char { background: #f4efe3; color: #0b0c0e; }
+.gate-disk .btn-char-line { color: #f4efe3; border-color: #f4efe3; }
 .gate.clearing { background: transparent; transition: background-color .9s ease .3s; pointer-events: none; }
 .gate.clearing .gate-sun { transition: transform 1.2s cubic-bezier(.5, 0, .2, 1), filter 1.2s ease, opacity .5s ease .75s; transform: translate(-50%, -50%) scale(5); filter: brightness(2.4); opacity: 0; }
 .gate.clearing .gate-disk, .gate.clearing .gate-logo { transition: opacity .25s ease; opacity: 0; }
@@ -395,3 +395,7 @@ input[type="radio"], input[type="checkbox"] { font-size: 16px; }
 .disk-s, .disk-l { width: clamp(120px, 15vw, 220px); height: clamp(120px, 15vw, 220px); }
 .big-fact { word-spacing: .1em; }
 @media (max-width: 860px) { .room--partial::after { background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .94) 58%, #000 100%), linear-gradient(180deg, rgba(0, 0, 0, .4) 0, rgba(0, 0, 0, 0) 16%); } }
+
+/* under 21: pale words on a black moon, so a browser's force-dark can't wash them out */
+.exit-disk { color: #f4efe3; }
+.exit-disk::after { content: ""; position: absolute; inset: 3%; z-index: -1; border-radius: 50%; background: #000; }
