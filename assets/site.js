@@ -8,17 +8,17 @@
   function ramp(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
   function ease(t) { return t * t * (3 - 2 * t); }
 
-  // 21+ gate (remembered for this browser; "No" goes to the under-21 page)
+  // 21+ gate (asks on every new visit, remembered for this tab only; "No" goes to the under-21 page)
   var gate = document.getElementById('gate');
   var cleared = false;
-  try { cleared = localStorage.getItem('sw-21') === 'yes'; } catch (e) {}
+  try { cleared = sessionStorage.getItem('sw-21') === 'yes'; } catch (e) {}
   if (gate) {
     if (cleared) gate.hidden = true;
     else {
       gate.hidden = false;
       document.body.style.overflow = 'hidden';
       gate.querySelector('[data-yes]').addEventListener('click', function () {
-        try { localStorage.setItem('sw-21', 'yes'); } catch (e) {}
+        try { sessionStorage.setItem('sw-21', 'yes'); } catch (e) {}
         document.body.style.overflow = '';
         if (reduce) { gate.hidden = true; return; }
         gate.classList.add('clearing');
